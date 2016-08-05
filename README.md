@@ -28,7 +28,7 @@ converts this:
 ```js
 const em = require('electron-menu')
 
-const menu = ['Coins', [
+const menu = em(['Coins', [
   ['Bitcoin', bitcoinClick],
   ['Litecoin', litecoinClick],
   ['Tokens', [
@@ -37,7 +37,7 @@ const menu = ['Coins', [
     '-',
     ['Example role', 'hide']
   ]]
-]]
+]])
 ```
 
 to
