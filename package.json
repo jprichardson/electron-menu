@@ -1,0 +1,28 @@
+{
+  "name": "electron-menu",
+  "description": "Convenience module to build Electron menus.",
+  "version": "0.0.0",
+  "author": "JP Richardson <jprichardson@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/jprichardson/electron-menu/issues"
+  },
+  "devDependencies": {
+    "standard": "*",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.0"
+  },
+  "homepage": "https://github.com/jprichardson/electron-menu",
+  "keywords": [
+    "electron",
+    "menu"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jprichardson/electron-menu.git"
+  },
+  "scripts": {
+    "test": "standard && tape test/*.js | tap-spec"
+  }
+}
