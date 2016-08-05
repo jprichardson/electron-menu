@@ -1,4 +1,5 @@
-# electron-menu
+electron-menu
+==============
 
 [![npm][npm-image]][npm-url]
 [![travis][travis-image]][travis-url]
@@ -11,20 +12,57 @@
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
-Convenience module to build Electron menus.
+Convenience module to build Electron menus templates.
 
-## Install
+Install
+-------
 
-```
-npm install electron-menu
-```
+    npm install --save electron-menu
 
-## Usage
+
+Usage
+-----
+
+converts this:
 
 ```js
-var electronMenu = require('electron-menu')
+const em = require('electron-menu')
+
+const menu = ['Coins', [
+  ['Bitcoin', bitcoinClick],
+  ['Litecoin', litecoinClick],
+  ['Tokens', [
+    ['Omni', omniClick],
+    ['Counterparty', 'Cmd+H', bitcoinClick],
+    '-',
+    ['Example role', 'hide']
+  ]]
+]]
 ```
 
-## License
+to
+
+```js
+{
+  label: 'Coins',
+  submenu: [
+    { label: 'Bitcoin', click: bitcoinClick },
+    { label: 'Litecoin', click: litecoinClick },
+    { label: 'Tokens', submenu: [
+      { label: 'Omni', click: omniClick },
+      { label: 'Counterparty', accelerator: 'Cmd+H', click: bitcoinClick },
+      { type: 'separator' },
+      { label: 'Example role', role: 'hide' }
+    ]}
+  ]
+}
+```
+
+
+
+License
+--------
+
+Copyright [JP Richardson](https://github.com/jprichardson)
 
 [MIT](LICENSE.md)
