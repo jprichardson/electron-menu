@@ -23,6 +23,8 @@
     "url": "https://github.com/jprichardson/electron-menu.git"
   },
   "scripts": {
-    "test": "standard && tape test/*.js | tap-spec"
+    "lint": "standard",
+    "test": "npm run lint && npm run unit",
+    "unit": " tape test/*.js | tap-spec"
   }
 }
