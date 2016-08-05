@@ -23,6 +23,8 @@ function convert (menuDesc) {
   menuDesc.forEach(menuItem => {
     if (isClickHandler(menuItem)) return Object.assign(menuDescObj, { click: menuItem })
     if (isRole(menuItem)) return Object.assign(menuDescObj, { role: menuItem })
+    // by this point, we've already checked if the string was a label or role, now it must be an accelerator
+    if (typeof menuItem === 'string') return Object.assign(menuDescObj, { accelerator: menuItem })
   })
 
   return menuDescObj
