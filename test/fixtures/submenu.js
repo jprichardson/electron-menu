@@ -48,12 +48,15 @@ module.exports = [
       submenu: [
         { label: 'Bitcoin', click: bitcoinClick },
         { label: 'Litecoin', click: litecoinClick },
-        { label: 'Tokens', submenu: [
-          { label: 'Omni', click: omniClick },
-          { label: 'Counterparty', accelerator: 'Cmd+H', click: bitcoinClick },
-          { type: 'separator' },
-          { label: 'Example role', role: 'hide' }
-        ]}
+        {
+          label: 'Tokens',
+          submenu: [
+            { label: 'Omni', click: omniClick },
+            { label: 'Counterparty', accelerator: 'Cmd+H', click: bitcoinClick },
+            { type: 'separator' },
+            { label: 'Example role', role: 'hide' }
+          ]
+        }
       ]
     }
   }
