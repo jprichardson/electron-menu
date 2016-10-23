@@ -13,11 +13,16 @@
   "pasteandmatchstyle",
   "quit",
   "redo",
+  "resetzoom",
   "selectall",
   "services",
+  "startspeaking",
+  "stopspeaking",
   "togglefullscreen",
   "undo",
   "unhide",
   "window",
-  "zoom"
+  "zoom",
+  "zoomin",
+  "zoomout"
 ]
