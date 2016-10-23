@@ -9,29 +9,19 @@ function convert (menuDesc) {
     if (isSeparator(menuDesc)) return { type: 'separator' }
     return menuDesc
   }
-  if (menuDesc.length === 0) return menuDesc
-  menuDesc = menuDesc.slice(0) // shallow clone array
 
+  if (menuDesc.length === 0) return []
   if (isSeparator(menuDesc[0])) return { type: 'separator' }
+  if (typeof menuDesc[0] !== 'string') return menuDesc.map(convert) // assume sub-menu
 
-  // is it a menu-item or a submenu?
-  if (typeof menuDesc[0] === 'string') {
-    // convention dictates the first being the label
-    let menuDescObj = { label: menuDesc[0] }
-    menuDesc.shift() // already processed label, so get rid of it
-
-    menuDesc.forEach(menuItem => {
-      if (isClickHandler(menuItem)) return Object.assign(menuDescObj, { click: menuItem })
-      if (isRole(menuItem)) return Object.assign(menuDescObj, { role: menuItem })
-      // by this point, we've already checked if the string was a label or role, now it must be an accelerator
-      if (typeof menuItem === 'string') return Object.assign(menuDescObj, { accelerator: menuItem })
-      if (Array.isArray(menuItem)) return Object.assign(menuDescObj, { submenu: convert(menuItem) })
-    })
-
-    return menuDescObj
-  } else { // assume sub-menu
-    return menuDesc.map(convert)
-  }
+  // convention dictates the first being the label
+  return menuDesc.slice(1).reduce((result, menuItem) => {
+    if (isClickHandler(menuItem)) return Object.assign(result, { click: menuItem })
+    if (isRole(menuItem)) return Object.assign(result, { role: menuItem })
+    // by this point, we've already checked if the string was a label or role, now it must be an accelerator
+    if (typeof menuItem === 'string') return Object.assign(result, { accelerator: menuItem })
+    if (Array.isArray(menuItem)) return Object.assign(result, { submenu: convert(menuItem) })
+  }, { label: menuDesc[0] })
 }
 
 module.exports = convert
