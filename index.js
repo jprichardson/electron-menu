@@ -18,9 +18,10 @@ function convert (menuDesc) {
   return menuDesc.slice(1).reduce((result, menuItem) => {
     if (isClickHandler(menuItem)) return Object.assign(result, { click: menuItem })
     if (isRole(menuItem)) return Object.assign(result, { role: menuItem })
+    if (Array.isArray(menuItem)) return Object.assign(result, { submenu: convert(menuItem) })
+    if (typeof menuItem === 'object') return Object.assign(result, menuItem)
     // by this point, we've already checked if the string was a label or role, now it must be an accelerator
     if (typeof menuItem === 'string') return Object.assign(result, { accelerator: menuItem })
-    if (Array.isArray(menuItem)) return Object.assign(result, { submenu: convert(menuItem) })
   }, { label: menuDesc[0] })
 }
 
