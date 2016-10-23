@@ -1,10 +1,8 @@
+const roles = require('./roles.json')
+
 const isSeparator = (input) => input === '-' || (Array.isArray(input) && input[0] === '-')
 const isClickHandler = (fn) => typeof fn === 'function'
-const isRole = (role) => [
-  'undo', 'redo', 'cut', 'copy', 'paste', 'pasteandmatchstyle', 'selectall', 'delete',
-  'minimize', 'close', 'quit', 'togglefullscreen', 'about', 'hide', 'hideothers',
-  'unhide', 'front', 'zoom', 'window', 'help', 'services'
-].includes(role)
+const isRole = (role) => roles.includes(role)
 
 function convert (menuDesc) {
   if (!Array.isArray(menuDesc)) {
